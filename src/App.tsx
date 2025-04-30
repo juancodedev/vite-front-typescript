@@ -6,9 +6,18 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
+import 'dayjs/locale/es';
+
+// Set Spanish locale as default
+dayjs.locale('es');
 function App() {
   return (
-    <AppRouter/>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <AppRouter/>
+    </LocalizationProvider>
   )
 }
 

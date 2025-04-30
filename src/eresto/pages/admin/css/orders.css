@@ -1,0 +1,27 @@
+.ordersTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.ordersTable td {
+    vertical-align: middle;
+}
+
+.ordersTable ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ordersTable li {
+    margin-bottom: 4px;
+}
+
+.delayedRow td {
+    background-color: rgba(254, 226, 226, 0.5);
+}
+
+.pendingRow td {
+    background-color: rgba(254, 243, 199, 0.5);
+}

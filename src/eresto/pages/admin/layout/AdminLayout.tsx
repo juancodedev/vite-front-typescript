@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
@@ -23,7 +24,7 @@ import {
     SignOutButton,
     AccountPreviewProps,
 } from '@toolpad/core/Account';
-import type { Navigation, Router, Session } from '@toolpad/core/AppProvider';
+import type { Navigation, Session } from '@toolpad/core/AppProvider';
 
 
 const NAVIGATION: Navigation = [
@@ -32,27 +33,27 @@ const NAVIGATION: Navigation = [
         title: 'Main items',
     },
     {
-        segment: 'dashboard',
+        segment: 'admin',
         title: 'Dashboard',
         icon: <DashboardIcon />,
     },
     {
-        segment: 'orders',
+        segment: 'admin/orders',
         title: 'Orders',
         icon: <ShoppingCartIcon />,
     },
     {
-        segment: 'tables',
+        segment: 'admin/tables',
         title: 'Tables',
         icon: <TableBarIcon />,
     },
     {
-        segment: 'reports',
+        segment: 'admin/reports',
         title: 'Reports',
         icon: <BarChartIcon />,
     },
     {
-        segment: 'Users',
+        segment: 'admin/users',
         title: 'Users',
         icon: <PersonIcon />,
     },
@@ -73,22 +74,6 @@ const demoTheme = createTheme({
         },
     },
 });
-
-function DemoPageContent({ pathname }: Readonly<{ pathname: string }>) {
-    return (
-        <Box
-            sx={{
-                py: 4,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                textAlign: 'center',
-            }}
-        >
-            <Typography>Dashboard content for {pathname}</Typography>
-        </Box>
-    );
-}
 function AccountSidebarPreview(props: AccountPreviewProps & { mini: boolean }) {
     const { handleClick, open, mini } = props;
     return (
@@ -240,16 +225,8 @@ const demoSession = {
 
 export function AdminLayout({ children, ...props }: Readonly<DemoProps & { children: React.ReactNode }>) {
     const { window } = props;
-
-    const [pathname, setPathname] = React.useState('/dashboard');
-
-    const router = React.useMemo<Router>(() => {
-        return {
-            pathname,
-            searchParams: new URLSearchParams(),
-            navigate: (path) => setPathname(String(path)),
-        };
-    }, [pathname]);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     // Remove this const when copying and pasting into your project.
     const demoWindow = window !== undefined ? window() : undefined;
@@ -269,7 +246,11 @@ export function AdminLayout({ children, ...props }: Readonly<DemoProps & { child
     return (
         <AppProvider
             navigation={NAVIGATION}
-            router={router}
+            router={{
+                pathname: location.pathname,
+                searchParams: new URLSearchParams(location.search),
+                navigate: (path) => navigate(String(path)),
+            }}
             theme={demoTheme}
             window={demoWindow}
             authentication={authentication}
@@ -278,7 +259,7 @@ export function AdminLayout({ children, ...props }: Readonly<DemoProps & { child
             <DashboardLayout
                 slots={{ toolbarAccount: () => null, sidebarFooter: SidebarFooterAccount }}
             >
-                {children || <DemoPageContent pathname={pathname} />}
+                {children}
             </DashboardLayout>
         </AppProvider>
     );
