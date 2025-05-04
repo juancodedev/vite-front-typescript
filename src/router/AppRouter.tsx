@@ -3,7 +3,7 @@ import Home from "../eresto/pages/Home";
 import { Admin } from "../eresto/pages/admin/Admin";
 import { Orders } from "../eresto/pages/admin/Orders";
 import { Dashboard } from "../eresto/pages/admin/Dashboard";
-import { Tables } from "../eresto/pages/admin/Tables";
+import { Tables } from "../eresto/pages/admin/tables/Tables.tsx";
 import { Reports } from "../eresto/pages/admin/Reports";
 import { Users } from "../eresto/pages/admin/Users";
 
