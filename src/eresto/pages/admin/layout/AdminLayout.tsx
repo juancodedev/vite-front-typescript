@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MenuList from '@mui/material/MenuList';
@@ -25,6 +24,7 @@ import {
     AccountPreviewProps,
 } from '@toolpad/core/Account';
 import type { Navigation, Session } from '@toolpad/core/AppProvider';
+import PaymentsIcon from '@mui/icons-material/Payments';
 
 
 const NAVIGATION: Navigation = [
@@ -46,6 +46,11 @@ const NAVIGATION: Navigation = [
         segment: 'admin/tables',
         title: 'Tables',
         icon: <TableBarIcon />,
+    },
+    {
+        segment: 'admin/payment-history',
+        title: 'Payment History',
+        icon: <PaymentsIcon />,
     },
     {
         segment: 'admin/reports',
