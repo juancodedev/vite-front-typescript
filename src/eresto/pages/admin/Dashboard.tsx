@@ -16,6 +16,8 @@ import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 import { CardHeader, Typography } from '@mui/material';
 import { TableStatusChart } from './tables/table-status-chart';
+import { OrderFlowChart } from './dashboard/order-flow-chart';
+import { PaymentSummaryChart } from './dashboard/payment-summary-chart';
 
 export const Dashboard = () => {
     const summaryData = {
@@ -40,20 +42,21 @@ export const Dashboard = () => {
                     Dashboard
                 </h1>
             </div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4" >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+
                 <Card>
                     <CardContent className='p-6'>
-                        <div className="flex item-center justify-berween space-y-0">
+                        <div className="flex items-center justify-between space-y-0">
                             <div>
                                 <p className='text-sm font-medium text-muted-foreground'> Ventas Totales</p>
                                 <h3 className='text-2xl font-bold tracking-tight'>{summaryData.ventas}</h3>
                                 <p className='text-xs text-green-500 flex items-center mt-1'>
-                                    <TrendingUpIcon className='h-3 w-3 mr-1' />
+                                    <TrendingUpIcon className='mr-1' />
                                     {summaryData.ventasSemana} esta semana
                                 </p>
                             </div>
                             <div className="p-2 bg-primary/10 rounded-full">
-                                <AttachMoneyRoundedIcon className='h-6 w-6 text-primary' />
+                                <AttachMoneyRoundedIcon fontSize="large" className='text-primary' />
                             </div>
                         </div>
                     </CardContent>
@@ -66,12 +69,12 @@ export const Dashboard = () => {
                                 <p className="text-sm font-medium text-muted-foreground">Pedidos Hoy</p>
                                 <h3 className="text-2xl font-bold tracking-tight">{summaryData.pedidos}</h3>
                                 <p className="text-xs text-amber-500 flex items-center mt-1">
-                                    <AccessTimeIcon className="h-3 w-3 mr-1" />
+                                    <AccessTimeIcon fontSize="large" className="mr-1" />
                                     {summaryData.pedidosPendientes} pendientes
                                 </p>
                             </div>
                             <div className="p-2 bg-amber-500/10 rounded-full">
-                                <ShoppingBagIcon className="h-6 w-6 text-amber-500" />
+                                <ShoppingBagIcon className="text-amber-500" />
                             </div>
                         </div>
                     </CardContent>
@@ -83,12 +86,12 @@ export const Dashboard = () => {
                                 <p className="text-sm font-medium text-muted-foreground">Clientes Atendidos</p>
                                 <h3 className="text-2xl font-bold tracking-tight">{summaryData.clientes}</h3>
                                 <p className="text-xs text-blue-500 flex items-center mt-1">
-                                    <CalendarMonthIcon className="h-3 w-3 mr-1" />
+                                    <CalendarMonthIcon fontSize="large" className="mr-1" />
                                     Hoy
                                 </p>
                             </div>
                             <div className="p-2 bg-blue-500/10 rounded-full">
-                                <GroupIcon className="h-6 w-6 text-blue-500" />
+                                <GroupIcon fontSize="large" className="text-blue-500" />
                             </div>
                         </div>
                     </CardContent>
@@ -100,12 +103,12 @@ export const Dashboard = () => {
                                 <p className="text-sm font-medium text-muted-foreground">Mesas Ocupadas</p>
                                 <h3 className="text-2xl font-bold tracking-tight">{summaryData.mesasOcupadas}</h3>
                                 <p className="text-xs text-purple-500 flex items-center mt-1">
-                                    <AccessTimeIcon className="h-3 w-3 mr-1" />
+                                    <AccessTimeIcon className="mr-1" />
                                     {summaryData.tiempoPromedio} promedio
                                 </p>
                             </div>
                             <div className="p-2 bg-purple-500/10 rounded-full">
-                                <FlatwareIcon className="h-6 w-6 text-purple-500" />
+                                <FlatwareIcon fontSize="large" className="text-purple-500" />
                             </div>
                         </div>
                     </CardContent>
@@ -128,7 +131,7 @@ export const Dashboard = () => {
                                 </Typography>
 
                                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                Distribución actual de mesas por estado
+                                    Distribución actual de mesas por estado
                                 </Typography>
                             </CardHeader>
                             <CardContent>
@@ -138,15 +141,19 @@ export const Dashboard = () => {
 
                         <Card>
                             <CardHeader>
-                            <Typography gutterBottom variant="h5" component="div">
+                                <Typography gutterBottom variant="h5" component="div">
                                     Estado de Mesas
                                 </Typography>
 
                                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                Distribución actual de mesas por estado
+                                    Distribución actual de mesas por estado
                                 </Typography>
-                                <CardTitle>Flujo de Pedidos</CardTitle>
-                                <CardDescription>Estado actual de los pedidos</CardDescription>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Flujo de Pedidos
+                                </Typography>
+                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                    Estado actual de los pedidos
+                                </Typography>
                             </CardHeader>
                             <CardContent>
                                 <OrderFlowChart />
@@ -155,8 +162,12 @@ export const Dashboard = () => {
 
                         <Card>
                             <CardHeader>
-                                <CardTitle>Resumen de Pagos</CardTitle>
-                                <CardDescription>Ventas de la última semana</CardDescription>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Resumen de Pagos
+                                </Typography>
+                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                    Ventas de la última semana
+                                </Typography>
                             </CardHeader>
                             <CardContent>
                                 <PaymentSummaryChart />
