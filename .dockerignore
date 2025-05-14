@@ -46,3 +46,6 @@ logs
 .tmp
 .turbo
 
+#Dockers
+Dockerfile
+README.md
