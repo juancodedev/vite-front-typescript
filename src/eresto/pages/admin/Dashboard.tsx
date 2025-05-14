@@ -1,20 +1,12 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import AttachMoneyRoundedIcon from '@mui/icons-material/AttachMoneyRounded';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import GroupIcon from '@mui/icons-material/Group';
-import FlatwareIcon from '@mui/icons-material/Flatware';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
-import Box from '@mui/material/Box';
-import { CardHeader, Typography } from '@mui/material';
+import { Box, Card, CardContent, Typography, Grid, Avatar, Stack, CardHeader } from '@mui/material';
+import { Euro, ShoppingCart, People, RestaurantMenu, AccessTime } from '@mui/icons-material';
+
 import { TableStatusChart } from './tables/table-status-chart';
 import { OrderFlowChart } from './dashboard/order-flow-chart';
 import { PaymentSummaryChart } from './dashboard/payment-summary-chart';
@@ -30,7 +22,7 @@ export const Dashboard = () => {
         ventasSemana: "+12.5%",
         pedidosPendientes: "5",
     }
-    const [value, setValue] = React.useState('1');
+    const [value, setValue] = React.useState('charts');
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
@@ -42,9 +34,9 @@ export const Dashboard = () => {
                     Dashboard
                 </h1>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* <div className="flex flex-wrap gap-4">
 
-                <Card>
+                <Card className="flex-1 min-w-[250px]">
                     <CardContent className='p-6'>
                         <div className="flex items-center justify-between space-y-0">
                             <div>
@@ -113,7 +105,107 @@ export const Dashboard = () => {
                         </div>
                     </CardContent>
                 </Card>
-            </div>
+            </div> */}
+            <Box sx={{ flexGrow: 1, p: 2 }}>
+                <Grid container spacing={2}>
+                    {/* Ventas Totales */}
+                    <Grid>
+                        <Card variant="outlined">
+                            <CardContent>
+                                <Stack direction="row" justifyContent="space-between" alignItems="center">
+                                    <Box>
+                                        <Typography variant="subtitle2" color="text.secondary">
+                                            Ventas Totales
+                                        </Typography>
+                                        <Typography variant="h5" fontWeight="bold">
+                                            €4,550.50
+                                        </Typography>
+                                        <Typography variant="caption" color="green">
+                                            +12.5% esta semana
+                                        </Typography>
+                                    </Box>
+                                    <Avatar sx={{ bgcolor: '#e0e0e0' }}>
+                                        <Euro />
+                                    </Avatar>
+                                </Stack>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+
+                    {/* Pedidos Hoy */}
+                    <Grid >
+                        <Card variant="outlined">
+                            <CardContent>
+                                <Stack direction="row" justifyContent="space-between" alignItems="center">
+                                    <Box>
+                                        <Typography variant="subtitle2" color="text.secondary">
+                                            Pedidos Hoy
+                                        </Typography>
+                                        <Typography variant="h5" fontWeight="bold">
+                                            124
+                                        </Typography>
+                                        <Typography variant="caption" color="orange">
+                                            ⏱ 5 pendientes
+                                        </Typography>
+                                    </Box>
+                                    <Avatar sx={{ bgcolor: '#ffe0b2' }}>
+                                        <ShoppingCart />
+                                    </Avatar>
+                                </Stack>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+
+                    {/* Clientes Atendidos */}
+                    <Grid >
+                        <Card variant="outlined">
+                            <CardContent>
+                                <Stack direction="row" justifyContent="space-between" alignItems="center">
+                                    <Box>
+                                        <Typography variant="subtitle2" color="text.secondary">
+                                            Clientes Atendidos
+                                        </Typography>
+                                        <Typography variant="h5" fontWeight="bold">
+                                            38
+                                        </Typography>
+                                        <Typography variant="caption" color="primary">
+                                            📅 Hoy
+                                        </Typography>
+                                    </Box>
+                                    <Avatar sx={{ bgcolor: '#bbdefb' }}>
+                                        <People />
+                                    </Avatar>
+                                </Stack>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+
+                    {/* Mesas Ocupadas */}
+                    <Grid>
+                        <Card variant="outlined">
+                            <CardContent>
+                                <Stack direction="row" justifyContent="space-between" alignItems="center">
+                                    <Box>
+                                        <Typography variant="subtitle2" color="text.secondary">
+                                            Mesas Ocupadas
+                                        </Typography>
+                                        <Typography variant="h5" fontWeight="bold">
+                                            8/15
+                                        </Typography>
+                                        <Typography variant="caption" color="purple">
+                                            <AccessTime fontSize="inherit" sx={{ verticalAlign: 'middle' }} /> 45 min promedio
+                                        </Typography>
+                                    </Box>
+                                    <Avatar sx={{ bgcolor: '#e1bee7' }}>
+                                        <RestaurantMenu />
+                                    </Avatar>
+                                </Stack>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Box>
+
             <Box sx={{ width: '100%', typography: 'body1' }}>
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -123,13 +215,13 @@ export const Dashboard = () => {
                             <Tab label="Más Populares" value="popular" />
                         </TabList>
                     </Box>
-                    <TabPanel value="charts" className="space-y-4">          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    <TabPanel value="charts" className="space-y-4">
+                        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                         <Card>
                             <CardHeader>
                                 <Typography gutterBottom variant="h5" component="div">
                                     Estado de Mesas
                                 </Typography>
-
                                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                                     Distribución actual de mesas por estado
                                 </Typography>
@@ -138,13 +230,11 @@ export const Dashboard = () => {
                                 <TableStatusChart />
                             </CardContent>
                         </Card>
-
                         <Card>
                             <CardHeader>
                                 <Typography gutterBottom variant="h5" component="div">
                                     Estado de Mesas
                                 </Typography>
-
                                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                                     Distribución actual de mesas por estado
                                 </Typography>
