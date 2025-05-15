@@ -215,23 +215,44 @@ export const Dashboard = () => {
                             <Tab label="Más Populares" value="popular" />
                         </TabList>
                     </Box>
-                    <TabPanel value="charts" className="space-y-4">
-                        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                        <Card>
+                    <TabPanel value="charts" className="space-y-4 ">
+                        <Box className="grid">
+                            <Card sx={{ maxWidth: 300 }}>
+                                {/* <Card>
                             <CardHeader>
-                                <Typography gutterBottom variant="h5" component="div">
+                            asdklajslk
+                            </CardHeader>
+                            {/* <CardHeader>
+                            <Typography gutterBottom variant="h5" component="div">
                                     Estado de Mesas
                                 </Typography>
                                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                                     Distribución actual de mesas por estado
-                                </Typography>
-                            </CardHeader>
-                            <CardContent>
-                                <TableStatusChart />
-                            </CardContent>
+                                    </Typography>
+                                    </CardHeader> */}
+                                {/* <CardContent> */}
+                                {/* <TableStatusChart /> */}
+
+                                {/* </CardContent> */}
+                                {/* </Card>  */}
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                    Estado de Mesas
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                    Distribución actual de mesas por estado
+                                    </Typography>
+                                    <TableStatusChart />
+                                </CardContent>
+                            </Card>
+                        </Box>
+                        <Card sx={{ maxWidth: 300 }}> 
+                            askdlk
                         </Card>
-                        <Card>
-                            <CardHeader>
+
+
+                            {/* <Card> */}
+                            {/* <CardHeader>
                                 <Typography gutterBottom variant="h5" component="div">
                                     Estado de Mesas
                                 </Typography>
@@ -248,24 +269,28 @@ export const Dashboard = () => {
                             <CardContent>
                                 <OrderFlowChart />
                             </CardContent>
-                        </Card>
+                        </Card> */}
 
-                        <Card>
+                            {/* <Card>
                             <CardHeader>
                                 <Typography gutterBottom variant="h5" component="div">
                                     Resumen de Pagos
                                 </Typography>
                                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                    Ventas de la última semana
+                                Distribución actual de mesas por estado
                                 </Typography>
                             </CardHeader>
                             <CardContent>
                                 <PaymentSummaryChart />
                             </CardContent>
-                        </Card>
-                    </div>
+                        </Card> */}
+
                     </TabPanel>
-                    <TabPanel value="activity">Item Two</TabPanel>
+                    <TabPanel value="activity">
+                        <Box>
+
+                        </Box>
+                    </TabPanel>
                     <TabPanel value="popular">Item Three</TabPanel>
                 </TabContext>
             </Box>
