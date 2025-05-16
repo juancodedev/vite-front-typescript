@@ -205,7 +205,6 @@ export const Dashboard = () => {
                     </Grid>
                 </Grid>
             </Box>
-
             <Box sx={{ width: '100%', typography: 'body1' }}>
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -216,79 +215,77 @@ export const Dashboard = () => {
                         </TabList>
                     </Box>
                     <TabPanel value="charts" className="space-y-4 ">
-                        <Box className="grid">
-                            <Card sx={{ maxWidth: 300 }}>
-                                {/* <Card>
-                            <CardHeader>
-                            asdklajslk
-                            </CardHeader>
-                            {/* <CardHeader>
-                            <Typography gutterBottom variant="h5" component="div">
-                                    Estado de Mesas
-                                </Typography>
-                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                    Distribución actual de mesas por estado
-                                    </Typography>
-                                    </CardHeader> */}
-                                {/* <CardContent> */}
-                                {/* <TableStatusChart /> */}
+                        <Box sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                        }}>
+                            <Box>
+                                <Card sx={{
+                                    borderRadius: "8px",
+                                    boxShadow: "0px 0px 10px rgb(222, 222, 222)",
+                                }}>
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            Estado de Mesas
+                                        </Typography>
+                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                            Distribución actual de mesas por estado
+                                        </Typography>
+                                        <TableStatusChart />
+                                    </CardContent>
+                                </Card>
+                            </Box>
+                            <Box sx={{
+                            }}>
+                                <Card
+                                    sx={{
+                                with: "300px",
 
-                                {/* </CardContent> */}
-                                {/* </Card>  */}
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                    Estado de Mesas
-                                    </Typography>
-                                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                    Distribución actual de mesas por estado
-                                    </Typography>
-                                    <TableStatusChart />
-                                </CardContent>
-                            </Card>
+                                        borderRadius: "8px",
+                                        boxShadow: "0px 0px 10px rgb(222, 222, 222)",
+
+                                    }}>
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            Flujo de Pedidos
+                                        </Typography>
+                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                            Estado actual de los pedidos
+                                        </Typography>
+                                        <OrderFlowChart />
+                                    </CardContent>
+                                </Card>
+                            </Box>
+                            <Box>
+                                <Card sx={{
+                                    borderRadius: "8px",
+                                    boxShadow: "0px 0px 10px rgb(222, 222, 222)",
+                                }}
+                                >
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            Resumen de Pagos
+                                        </Typography>
+                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                            Ventas de la última semana
+                                        </Typography>
+                                        <PaymentSummaryChart />
+                                    </CardContent>
+                                </Card>
+                            </Box>
                         </Box>
-                        <Card sx={{ maxWidth: 300 }}> 
-                            askdlk
-                        </Card>
-
-
-                            {/* <Card> */}
-                            {/* <CardHeader>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Estado de Mesas
-                                </Typography>
-                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                    Distribución actual de mesas por estado
-                                </Typography>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Flujo de Pedidos
-                                </Typography>
-                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                    Estado actual de los pedidos
-                                </Typography>
-                            </CardHeader>
-                            <CardContent>
-                                <OrderFlowChart />
-                            </CardContent>
-                        </Card> */}
-
-                            {/* <Card>
-                            <CardHeader>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Resumen de Pagos
-                                </Typography>
-                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                Distribución actual de mesas por estado
-                                </Typography>
-                            </CardHeader>
-                            <CardContent>
-                                <PaymentSummaryChart />
-                            </CardContent>
-                        </Card> */}
-
                     </TabPanel>
                     <TabPanel value="activity">
-                        <Box>
+                        <Box sx ={{
+                            borderRadius: "5px",
+                            boxShadow: "0px 0px 10px rgb(222, 222, 222)",
+                            border: "1px",
+                            borderColor:"red"
 
+                        }}
+>
+asdasd
                         </Box>
                     </TabPanel>
                     <TabPanel value="popular">Item Three</TabPanel>
