@@ -5,7 +5,8 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
 import { Box, Card, CardContent, Typography, Grid, Avatar, Stack, CardHeader } from '@mui/material';
-import { Euro, ShoppingCart, People, RestaurantMenu, AccessTime } from '@mui/icons-material';
+import { Euro, ShoppingCart, People, RestaurantMenu, AccessTime,AttachMoneyIcon } from '@mui/icons-material';
+
 
 import { TableStatusChart } from './tables/table-status-chart';
 import { OrderFlowChart } from './dashboard/order-flow-chart';
@@ -220,8 +221,9 @@ export const Dashboard = () => {
                             flexDirection: "row",
                             justifyContent: "space-between",
                         }}>
-                            <Box>
+                            <Stack direction="row" spacing={3} alignItems="center">
                                 <Card sx={{
+                                    width: "400px",
                                     borderRadius: "8px",
                                     boxShadow: "0px 0px 10px rgb(222, 222, 222)",
                                 }}>
@@ -235,16 +237,11 @@ export const Dashboard = () => {
                                         <TableStatusChart />
                                     </CardContent>
                                 </Card>
-                            </Box>
-                            <Box sx={{
-                            }}>
                                 <Card
                                     sx={{
-                                with: "300px",
-
+                                        width: "400px",
                                         borderRadius: "8px",
                                         boxShadow: "0px 0px 10px rgb(222, 222, 222)",
-
                                     }}>
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="div">
@@ -256,9 +253,8 @@ export const Dashboard = () => {
                                         <OrderFlowChart />
                                     </CardContent>
                                 </Card>
-                            </Box>
-                            <Box>
                                 <Card sx={{
+                                    width: "400px",
                                     borderRadius: "8px",
                                     boxShadow: "0px 0px 10px rgb(222, 222, 222)",
                                 }}
@@ -273,22 +269,49 @@ export const Dashboard = () => {
                                         <PaymentSummaryChart />
                                     </CardContent>
                                 </Card>
-                            </Box>
+                            </Stack>
                         </Box>
                     </TabPanel>
                     <TabPanel value="activity">
-                        <Box sx ={{
+                        <Box sx={{
                             borderRadius: "5px",
                             boxShadow: "0px 0px 10px rgb(222, 222, 222)",
                             border: "1px",
-                            borderColor:"red"
-
                         }}
->
-asdasd
+                        >
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Actividad Reciente
+                                </Typography>
+                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                    Últimas acciones realizadas en el sistema
+                                </Typography>
+                                <Stack spacing={2} mt={2}>
+                                    <Stack direction="row" spacing={3} alignItems="center">
+
+                                    </Stack>
+                                </Stack>
+                            </CardContent>
                         </Box>
                     </TabPanel>
-                    <TabPanel value="popular">Item Three</TabPanel>
+                    <TabPanel value="popular">
+                        <Box sx={{
+                            borderRadius: "5px",
+                            boxShadow: "0px 0px 10px rgb(222, 222, 222)",
+                            border: "1px",
+                        }}
+                        >
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Platos Más Populares
+                                </Typography>
+                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                    Los platos más solicitados por los clientes
+                                </Typography>
+                            </CardContent>
+
+                        </Box>
+                    </TabPanel>
                 </TabContext>
             </Box>
         </div>

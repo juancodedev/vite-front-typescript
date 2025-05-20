@@ -14,6 +14,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import TableBarIcon from '@mui/icons-material/TableBar';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import ViewListIcon from '@mui/icons-material/ViewList';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout, SidebarFooterProps } from '@toolpad/core/DashboardLayout';
 import {
@@ -53,9 +54,9 @@ const NAVIGATION: Navigation = [
         icon: <PaymentsIcon />,
     },
     {
-        segment: 'admin/reports',
-        title: 'Reports',
-        icon: <BarChartIcon />,
+        segment: 'admin/categories',
+        title: 'Categories',
+        icon: <ViewListIcon />,
     },
     {
         segment: 'admin/users',
