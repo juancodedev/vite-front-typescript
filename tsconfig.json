@@ -1,7 +1,12 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "target": "ES5",
+    "lib": [
+      "dom",
+      "es2017"
+    ],
+      "jsx": "react",
+      "esModuleInterop": true
+  },
+  "include": ["src/**/*", "src/types/css.d.ts"]
 }
