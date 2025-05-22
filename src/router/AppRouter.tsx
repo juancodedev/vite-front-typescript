@@ -9,6 +9,7 @@ import { Users } from "../eresto/pages/admin/Users";
 import React from 'react';
 import PaymentHistory from "../eresto/pages/admin/PaymentHistory";
 import { Categories } from "../eresto/pages/admin/Categories";
+import { Products } from "../eresto/pages/admin/Products";
 
 export const AppRouter = () => {
     return (
@@ -23,6 +24,7 @@ export const AppRouter = () => {
                 <Route path="tables" element={<Tables/>} />
                 <Route path="categories" element={<Categories/>} />
                 <Route path="payment-history" element={<PaymentHistory/>} />
+                <Route path="products" element={<Products/>} />
                 <Route path="users" element={<Users/>} />
             </Route>
 

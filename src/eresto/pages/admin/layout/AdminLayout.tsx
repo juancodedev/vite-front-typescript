@@ -13,7 +13,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import TableBarIcon from '@mui/icons-material/TableBar';
-import BarChartIcon from '@mui/icons-material/BarChart';
+import ArticleIcon from '@mui/icons-material/Article';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout, SidebarFooterProps } from '@toolpad/core/DashboardLayout';
@@ -57,6 +57,11 @@ const NAVIGATION: Navigation = [
         segment: 'admin/categories',
         title: 'Categories',
         icon: <ViewListIcon />,
+    },
+    {
+        segment: 'admin/products',
+        title: 'Products',
+        icon: <ArticleIcon />,
     },
     {
         segment: 'admin/users',

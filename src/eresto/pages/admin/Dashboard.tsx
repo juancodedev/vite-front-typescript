@@ -4,25 +4,14 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
-import { Box, Card, CardContent, Typography, Grid, Avatar, Stack, CardHeader } from '@mui/material';
-import { Euro, ShoppingCart, People, RestaurantMenu, AccessTime,AttachMoneyIcon } from '@mui/icons-material';
+import { Box, Card, CardContent, Typography, Grid, Avatar, Stack } from '@mui/material';
+import { Euro, ShoppingCart, People, RestaurantMenu, AccessTime } from '@mui/icons-material';
 
-
-import { TableStatusChart } from './tables/table-status-chart';
-import { OrderFlowChart } from './dashboard/order-flow-chart';
-import { PaymentSummaryChart } from './dashboard/payment-summary-chart';
+import RecentActivities from '../../components/recentactivities/RecentActivities';
+import { MostPopular } from '../../components/mostpopular/MostPopular';
+import { Charts } from '../../components/charts/Charts';
 
 export const Dashboard = () => {
-    const summaryData = {
-        ventas: "€4,550.50",
-        pedidos: "124",
-        clientes: "38",
-        mesasOcupadas: "8/15",
-        tiempoPromedio: "45 min",
-        platosPopulares: ["Hamburguesa", "Paella", "Pasta Carbonara"],
-        ventasSemana: "+12.5%",
-        pedidosPendientes: "5",
-    }
     const [value, setValue] = React.useState('charts');
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -221,55 +210,7 @@ export const Dashboard = () => {
                             flexDirection: "row",
                             justifyContent: "space-between",
                         }}>
-                            <Stack direction="row" spacing={3} alignItems="center">
-                                <Card sx={{
-                                    width: "400px",
-                                    borderRadius: "8px",
-                                    boxShadow: "0px 0px 10px rgb(222, 222, 222)",
-                                }}>
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            Estado de Mesas
-                                        </Typography>
-                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                            Distribución actual de mesas por estado
-                                        </Typography>
-                                        <TableStatusChart />
-                                    </CardContent>
-                                </Card>
-                                <Card
-                                    sx={{
-                                        width: "400px",
-                                        borderRadius: "8px",
-                                        boxShadow: "0px 0px 10px rgb(222, 222, 222)",
-                                    }}>
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            Flujo de Pedidos
-                                        </Typography>
-                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                            Estado actual de los pedidos
-                                        </Typography>
-                                        <OrderFlowChart />
-                                    </CardContent>
-                                </Card>
-                                <Card sx={{
-                                    width: "400px",
-                                    borderRadius: "8px",
-                                    boxShadow: "0px 0px 10px rgb(222, 222, 222)",
-                                }}
-                                >
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            Resumen de Pagos
-                                        </Typography>
-                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                            Ventas de la última semana
-                                        </Typography>
-                                        <PaymentSummaryChart />
-                                    </CardContent>
-                                </Card>
-                            </Stack>
+                            <Charts />
                         </Box>
                     </TabPanel>
                     <TabPanel value="activity">
@@ -279,19 +220,7 @@ export const Dashboard = () => {
                             border: "1px",
                         }}
                         >
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Actividad Reciente
-                                </Typography>
-                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                    Últimas acciones realizadas en el sistema
-                                </Typography>
-                                <Stack spacing={2} mt={2}>
-                                    <Stack direction="row" spacing={3} alignItems="center">
-
-                                    </Stack>
-                                </Stack>
-                            </CardContent>
+                            <RecentActivities />
                         </Box>
                     </TabPanel>
                     <TabPanel value="popular">
@@ -301,15 +230,7 @@ export const Dashboard = () => {
                             border: "1px",
                         }}
                         >
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Platos Más Populares
-                                </Typography>
-                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                    Los platos más solicitados por los clientes
-                                </Typography>
-                            </CardContent>
-
+                            <MostPopular />
                         </Box>
                     </TabPanel>
                 </TabContext>
