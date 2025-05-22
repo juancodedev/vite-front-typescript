@@ -10,6 +10,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';
+import React from 'react';
 
 // Set Spanish locale as default
 dayjs.locale('es');

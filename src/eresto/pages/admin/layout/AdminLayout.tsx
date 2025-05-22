@@ -34,7 +34,7 @@ const NAVIGATION: Navigation = [
         title: 'Main items',
     },
     {
-        segment: 'admin',
+        segment: 'admin/dashboard',
         title: 'Dashboard',
         icon: <DashboardIcon />,
     },

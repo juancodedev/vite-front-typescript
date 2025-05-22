@@ -24,7 +24,7 @@ const generateProducts = () =>
         image: 'https://via.placeholder.com/80x50'
     }));
 
-export default function Products() {
+const Products = () => {
     const [products, setProducts] = useState(generateProducts());
     const [openModal, setOpenModal] = useState(false);
     const [editingProduct, setEditingProduct] = useState(null);
@@ -74,7 +74,7 @@ export default function Products() {
     );
 
     const sorted = [...filtered].sort((a, b) => {
-        if (sortBy === 'price') return a.price - b.price;
+        if (sortBy === 'price') return Number(a.price) - Number(b.price);
         return a[sortBy].localeCompare(b[sortBy]);
     });
 
@@ -155,7 +155,7 @@ export default function Products() {
                         label="Nombre del producto"
                         fullWidth
                         margin="normal"
-                        value={editingProduct?.name || ''}
+                        value={editingProduct?.name ?? ''}
                         onChange={(e) => setEditingProduct({ ...editingProduct, name: e.target.value })}
                     />
                     <TextField
@@ -163,13 +163,13 @@ export default function Products() {
                         type="number"
                         fullWidth
                         margin="normal"
-                        value={editingProduct?.price || ''}
+                        value={editingProduct?.price ?? ''}
                         onChange={(e) => setEditingProduct({ ...editingProduct, price: e.target.value })}
                     />
                     <FormControl fullWidth margin="normal">
                         <InputLabel>Categoría</InputLabel>
                         <Select
-                            value={editingProduct?.category || ''}
+                            value={editingProduct?.category ?? ''}
                             onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
                             label="Categoría"
                         >
@@ -181,13 +181,17 @@ export default function Products() {
                     <Box display="flex" alignItems="center" mt={2}>
                         <Typography variant="body2" mr={2}>Activo</Typography>
                         <Switch
-                            checked={editingProduct?.active || false}
+                            checked={editingProduct?.active ?? false}
                             onChange={(e) => setEditingProduct({ ...editingProduct, active: e.target.checked })}
                         />
                     </Box>
                     <Button component="label" variant="outlined" sx={{ mt: 2 }}>
                         Cambiar Imagen
-                        <input hidden type="file" accept="image/*" />
+                        <input 
+                            hidden 
+                            type="file" 
+                            accept="image/*" 
+                        />
                     </Button>
                 </DialogContent>
                 <DialogActions>
@@ -198,3 +202,5 @@ export default function Products() {
         </Box>
     );
 }
+
+export default Products;

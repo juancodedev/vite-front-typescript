@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "target": "ES5",
+    "lib": [
+      "dom",
+      "es2017"
+    ],
       "jsx": "react",
       "esModuleInterop": true
   },
