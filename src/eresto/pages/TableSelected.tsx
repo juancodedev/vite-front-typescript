@@ -1,8 +1,15 @@
 import React from 'react'
+import { OrderProvider } from '../context/OrderContext'
+import TableOrdersClients from '../components/TableOrdersClients'
+// Adjust the path as needed
 
 const TableSelected = () => {
   return (
-    <div>TableSelected</div>
+    <OrderProvider>
+      <TableOrdersClients params={{
+        id: ''
+      }} />
+    </OrderProvider>
   )
 }
 
