@@ -7,9 +7,6 @@ import { getTableById } from '../actions/table-actions'
 import Skeleton from '@mui/material/Skeleton';
 
 import { Alert, AlertTitle } from '@mui/material';
-import { v4 as uuidv4 } from 'uuid';
-
-
 
 
 // Tipo para los productos
@@ -19,6 +16,7 @@ type Product = {
     description: string
     price: number
     image: string
+    img: string // Added missing property
     category: string
 }
 
@@ -63,9 +61,10 @@ export default function TableOrdersClients({ params }: { readonly params: { read
             id: 1,
             name: "Ensalada César",
             description: "Lechuga fresca con aderezo César",
-            price: 8.99,
             image: "/placeholder.svg?height=200&width=200",
+            img: "/placeholder.svg?height=200&width=200", // Added img property
             category: "appetizers",
+            price: 0
         },
         {
             id: 2,
@@ -74,6 +73,7 @@ export default function TableOrdersClients({ params }: { readonly params: { read
             price: 12.99,
             image: "/placeholder.svg?height=200&width=200",
             category: "main courses",
+            img: ""
         },
         {
             id: 3,
@@ -82,6 +82,7 @@ export default function TableOrdersClients({ params }: { readonly params: { read
             price: 6.99,
             image: "/placeholder.svg?height=200&width=200",
             category: "desserts",
+            img: ""
         },
         {
             id: 4,
@@ -90,6 +91,7 @@ export default function TableOrdersClients({ params }: { readonly params: { read
             price: 3.99,
             image: "/placeholder.svg?height=200&width=200",
             category: "drinks",
+            img: ""
         },
     ]
 
@@ -106,14 +108,14 @@ export default function TableOrdersClients({ params }: { readonly params: { read
                             {Array(5)
                                 .fill(0)
                                 .map(() => (
-                                    <Skeleton key={uuidv4()} className="h-10 w-24" />
+                                    <Skeleton key="ASD" className="h-10 w-24" />
                                 ))}
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {Array(4)
                                 .fill(0)
                                 .map(() => (
-                                    <Skeleton key={uuidv4()} className="h-64 w-full" />
+                                    <Skeleton key="pos" className="h-64 w-full" />
                                 ))}
                         </div>
                     </div>
@@ -137,7 +139,7 @@ export default function TableOrdersClients({ params }: { readonly params: { read
     return (
         <div className="container mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">
-                Mesa {tableData.number} - Capacidad: {tableData.capacity} personas
+                Mesa {tableData?.number ?? "N/A"} - Capacidad: {tableData?.capacity ?? "N/A"} personas
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="md:col-span-2">

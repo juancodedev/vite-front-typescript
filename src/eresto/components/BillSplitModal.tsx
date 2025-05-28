@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { useOrder } from "../context/OrderContext"
-
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-
-
+import { Dialog, DialogContent, DialogTitle, Button, Input, Badge, Select, Alert } from "@mui/material"
+import { AlertCircle } from "lucide-react" // Ensure this is the correct library or path for AlertCircle
+import { Label } from "recharts"
 // Ensure this path is correct or update it to the actual location of the alert component.
 
 type CartItem = {
@@ -70,7 +67,7 @@ export default function BillSplitModal({ isOpen, onClose }: { isOpen: boolean; o
                 ...splits,
                 ...Array(newNumber - splits.length)
                     .fill(0)
-                    .map(() => ({ items: [], paymentMethod: "cash", total: 0 })),
+                    .map(() => ({ items: [], paymentMethod: "cash" as const, total: 0 })),
             ])
         } else if (newNumber < splits.length) {
             // Remover splits y reasignar sus items
@@ -161,11 +158,11 @@ export default function BillSplitModal({ isOpen, onClose }: { isOpen: boolean; o
     }
 
     return (
-        <Dialog open={isOpen} onOpenChange={(open) => !isPaying && onClose()}>
+        <Dialog open={isOpen} onClose={() => !isPaying && onClose()}>
             <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
-                <DialogHeader>
+                <div>
                     <DialogTitle>Dividir la cuenta</DialogTitle>
-                </DialogHeader>
+                </div>
 
                 {paymentComplete ? (
                     <div className="py-8 text-center">

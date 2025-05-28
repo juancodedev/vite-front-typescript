@@ -70,7 +70,7 @@ export default function Cart({ tableId }: { readonly tableId: string }) {
                     Pedir cuenta
                 </Button>
             )}
-            <BillSplitModal isOpen={isBillSplitModalOpen} onClose={() => setIsBillSplitModalOpen(false)} />
+            {/* <BillSplitModal isOpen={isBillSplitModalOpen} onClose={() => setIsBillSplitModalOpen(false)} /> */}
         </div>
     )
 }
