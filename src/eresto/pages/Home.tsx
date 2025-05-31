@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
     Box,
     Button,
@@ -8,7 +8,6 @@ import {
     FormControl,
     InputLabel,
 } from "@mui/material";
-import React from "react";
 
 const mesas = [
     { id: 1, label: "Mesa 1" },
@@ -21,7 +20,7 @@ const Home = ({ onSelect }: { onSelect: (id: number) => void }) => {
     const [mesaSeleccionada, setMesaSeleccionada] = useState("");
 
     const handleChange = (event: React.ChangeEvent<{ target: { value: unknown } }>) => {
-        setMesaSeleccionada(event.target.value as string);
+        setMesaSeleccionada((event.target as HTMLSelectElement).value);
     };
 
     const handleIrMesa = () => {

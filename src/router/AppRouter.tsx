@@ -22,7 +22,7 @@ export const AppRouter = () => {
             <Route path="/home" element={<Home onSelect={function (): void {
                 throw new Error("Function not implemented.");
             } }/>} />
-            <Route path="/home/table" element={<TableSelected />} />
+            <Route path="/home/table/:id" element={<TableSelected />} />
             
             {/* Admin routes */}
             <Route path="/admin" element={<Admin/>}>
