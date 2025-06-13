@@ -12,13 +12,17 @@ import PaymentHistory from "../eresto/pages/admin/PaymentHistory";
 import { Categories } from "../eresto/pages/admin/Categories";
 import Products from "../eresto/pages/admin/Products";
 import Login from "../eresto/pages/Login";
+import TableSelected from "../eresto/pages/TableSelected";
 
 
 export const AppRouter = () => {
     return (
         <Routes>
             <Route path="/login" element={<Login/>} />
-            <Route path="/home" element={<Home/>} />
+            <Route path="/home" element={<Home onSelect={function (): void {
+                throw new Error("Function not implemented.");
+            } }/>} />
+            <Route path="/home/table/:id" element={<TableSelected />} />
             
             {/* Admin routes */}
             <Route path="/admin" element={<Admin/>}>
