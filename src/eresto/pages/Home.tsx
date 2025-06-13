@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import {
     Box,
     Button,
@@ -9,6 +11,7 @@ import {
     InputLabel,
 } from "@mui/material";
 
+
 const mesas = [
     { id: 1, label: "Mesa 1" },
     { id: 2, label: "Mesa 2" },
@@ -17,15 +20,20 @@ const mesas = [
 ];
 
 const Home = ({ onSelect }: { onSelect: (id: number) => void }) => {
-    const [mesaSeleccionada, setMesaSeleccionada] = useState("");
+    const navigate = useNavigate();
+    const [mesaSeleccionada, setMesaSeleccionada] = useState<string>("");
 
-    const handleChange = (event: React.ChangeEvent<{ target: { value: unknown } }>) => {
-        setMesaSeleccionada((event.target as HTMLSelectElement).value);
+    // const handleChange = (event: React.ChangeEvent<{ target: { value: unknown } }>) => {
+    //     setMesaSeleccionada((event.target as HTMLSelectElement).value);
+    // };
+    const handleChange = (event: SelectChangeEvent) => {
+        setMesaSeleccionada(event.target.value);
     };
 
     const handleIrMesa = () => {
         if (mesaSeleccionada) {
-            onSelect(parseInt(mesaSeleccionada));
+            navigate(`/home/table/${mesaSeleccionada}`);
+            // onSelect(parseInt(mesaSeleccionada));
         }
     };
 
@@ -35,7 +43,9 @@ const Home = ({ onSelect }: { onSelect: (id: number) => void }) => {
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
-            height="100vh"
+            sx={{ height: '100vh',
+                width: '100vw'
+            }}
         >
             <Typography
                 variant="h4"

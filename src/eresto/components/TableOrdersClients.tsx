@@ -1,8 +1,12 @@
 import React from 'react'
+import { useParams } from "react-router-dom";
+
 
 const TableOrdersClients = () => {
+  const { id } = useParams<{ id: string }>();
+  
   return (
-    <div>TableOrdersClients</div>
+    <div>TableOrdersClients -- > : {id}</div>
   )
 }
 
