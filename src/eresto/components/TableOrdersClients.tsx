@@ -9,7 +9,8 @@ const TableOrdersClients = () => {
   
   return (
     // <div>TableOrdersClients -- > : {id}</div>
-    <CategoriesList/>
+    <CategoriesList
+      tableId = { id } />
   )
 }
 
