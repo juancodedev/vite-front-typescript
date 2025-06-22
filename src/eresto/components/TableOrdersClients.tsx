@@ -8,9 +8,8 @@ const TableOrdersClients = () => {
   const { id } = useParams<{ id: string }>();
   
   return (
-    // <div>TableOrdersClients -- > : {id}</div>
     <CategoriesList
-      tableId = { id } />
+      tableId = { id ? parseInt(id, 10) : undefined } />
   )
 }
 

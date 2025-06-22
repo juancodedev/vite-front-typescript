@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import RateProducts from '../RateProducts';
 import ErrorBoundary from '../ErrorBoundary';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const categories = [
     {
@@ -50,6 +51,14 @@ interface CategoriesListProps {
 
 export const CategoriesList = (props: CategoriesListProps) => {
     const id: string = props.tableId ? props.tableId.toString() : 'N/A'; // Provide a fallback value if tableId is undefined
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const goToCategory = (category: Category) => {
+        console.log(`${location.pathname}/${category.id}`);
+        navigate(`${location.pathname}/${category.id}`);
+    }    
+
     return (
         <Card sx={{ display: 'flex' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -62,7 +71,9 @@ export const CategoriesList = (props: CategoriesListProps) => {
                     <Card
                         key={category.id} 
                         sx={{ display: 'flex', mb: 2, boxShadow: 3, cursor: 'pointer' }}
-                        onClick={() => console.log('CategoriesList clicked', category.name)}
+                        onClick={() => {
+                            goToCategory(category);
+                        }}
                     >
                         <CardMedia
                             component="img"

@@ -13,7 +13,7 @@ import { Categories } from "../eresto/pages/admin/Categories";
 import Products from "../eresto/pages/admin/Products";
 import Login from "../eresto/pages/Login";
 import TableSelected from "../eresto/pages/TableSelected";
-
+import TableProducts from "../eresto/components/products/Products";
 
 export const AppRouter = () => {
     return (
@@ -23,6 +23,7 @@ export const AppRouter = () => {
                 throw new Error("Function not implemented.");
             } }/>} />
             <Route path="/home/table/:id" element={<TableSelected />} />
+            <Route path="/home/table/:id/:idCategory" element={<TableProducts />} />
             
             {/* Admin routes */}
             <Route path="/admin" element={<Admin/>}>
