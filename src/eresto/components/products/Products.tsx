@@ -1,15 +1,214 @@
+import { ListItemAvatar, List, Card, CardMedia, CardContent, Box, Button, Grid } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import Avatar from '@mui/material/Avatar';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import React from 'react'
+import RateProducts from '../RateProducts';
+import ErrorBoundary from '../ErrorBoundary';
 import { useParams, Link } from 'react-router-dom';
+
+const productList = [
+    {
+        "id": 4,
+        "title": "Magnum Almendras",
+        "image": "https://picsum.photos/200/300?random=1",
+        "price": "2.50",
+        "active": true,
+        "description": "Helado premium cubierto con una capa crujiente de chocolate y almendras.",
+        "category": 1,
+        "category_data": {
+            "id": 1,
+            "title": "Helados",
+            "image": "http://localhost:8001/uploads/categories/helados_O41W3bM.jpg"
+        }
+    },
+    {
+        "id": 5,
+        "title": "Chocapic Helado",
+        "image": "https://picsum.photos/200/300?random=2",
+        "price": "1.90",
+        "active": true,
+        "description": "Helado con sabor a chocolate y cereal Chocapic, ideal para los más pequeños.",
+        "category": 1,
+        "category_data": {
+            "id": 1,
+            "title": "Helados",
+            "image": "http://localhost:8001/uploads/categories/helados_O41W3bM.jpg"
+        }
+    },
+    {
+        "id": 6,
+        "title": "Helado Banana Split",
+        "image": "https://picsum.photos/200/300?random=3",
+        "price": "2.20",
+        "active": true,
+        "description": "Delicioso helado con sabor a plátano, fresa y chocolate en un solo bocado.",
+        "category": 1,
+        "category_data": {
+            "id": 1,
+            "title": "Helados",
+            "image": "http://localhost:8001/uploads/categories/helados_O41W3bM.jpg"
+        }
+    },
+    {
+        "id": 7,
+        "title": "Cornetto Clásico",
+        "image": "https://picsum.photos/200/300?random=4",
+        "price": "2.00",
+        "active": true,
+        "description": "Cono de barquillo relleno de helado de vainilla y cubierto con chocolate y trozos de maní.",
+        "category": 1,
+        "category_data": {
+            "id": 1,
+            "title": "Helados",
+            "image": "http://localhost:8001/uploads/categories/helados_O41W3bM.jpg"
+        }
+    },
+    {
+        "id": 8,
+        "title": "Mini Bombón",
+        "image": "https://picsum.photos/200/300?random=5",
+        "price": "1.00",
+        "active": true,
+        "description": "Pequeño helado de vainilla cubierto de chocolate, ideal para un antojo rápido.",
+        "category": 1,
+        "category_data": {
+            "id": 1,
+            "title": "Helados",
+            "image": "http://localhost:8001/uploads/categories/helados_O41W3bM.jpg"
+        }
+    },
+    {
+        "id": 9,
+        "title": "Mini Bombón",
+        "image": "https://picsum.photos/200/300?random=6",
+        "price": "1.00",
+        "active": true,
+        "description": "Pequeño helado de vainilla cubierto de chocolate, ideal para un antojo rápido.",
+        "category": 1,
+        "category_data": {
+            "id": 1,
+            "title": "Helados",
+            "image": "http://localhost:8001/uploads/categories/helados_O41W3bM.jpg"
+        }
+    },
+    {
+        "id": 10,
+        "title": "Mini Bombón",
+        "image": "https://picsum.photos/200/300?random=7",
+        "price": "1.00",
+        "active": true,
+        "description": "Pequeño helado de vainilla cubierto de chocolate, ideal para un antojo rápido.",
+        "category": 1,
+        "category_data": {
+            "id": 1,
+            "title": "Helados",
+            "image": "http://localhost:8001/uploads/categories/helados_O41W3bM.jpg"
+        }
+    },
+    {
+        "id": 11,
+        "title": "Mini Bombón",
+        "image": "https://picsum.photos/200/300?random=8",
+        "price": "1.00",
+        "active": true,
+        "description": "Pequeño helado de vainilla cubierto de chocolate, ideal para un antojo rápido.",
+        "category": 1,
+        "category_data": {
+            "id": 1,
+            "title": "Helados",
+            "image": "http://localhost:8001/uploads/categories/helados_O41W3bM.jpg"
+        }
+    }
+];
+
 
 export default function TableProducts() {
     const { id, idCategory } = useParams<{ id: string; idCategory: string }>();
-    // if (!tableNumber || !idCategory) {
-    //     return <div>Error: Missing table number or category ID</div>;
-    // }
+    const handleClickOpen = () => {
+        setOpen(true);
+        setQuantity(1); // reiniciar cantidad cada vez que se abre
+    };
     return (
-        <>
+        <Card sx={{display: 'flex'}}>
+            <Box sx={{display: 'flex', flexDirection: 'column'}}>
             <Link to={`/home/table/${id}`}>Volver a Categorias</Link>
-            <div>Products {idCategory}</div>
-        </>
+            <CardContent sx={{ flex: '1 0 auto' }}>
+                    <Typography variant="h6" component="div">
+                        Categorías {idCategory}
+                    </Typography>
+                </CardContent>
+            {/* <List sx={{ width: '100%', maxWidth: 460, bgcolor: 'background.paper' }}>
+                {productList.map((product) => (
+                    <React.Fragment key={product.id}>
+                        <ListItem alignItems='flex-start'>
+                            <ListItemAvatar>
+                                <Avatar alt={product.title} src={product.image} />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={product.title}
+                                secondary={<React.Fragment>
+                                    <Typography
+                                        component='span'
+                                        variant='body2'
+                                        sx={{ color: 'text.primary', display: 'inline' }}>
+                                        {`Precio: $${product.price}`}
+                                    </Typography>
+                                    {` - ${product.description}`}
+                                </React.Fragment>} />
+                                <IconButton color="primary" aria-label="add to shopping cart">
+                                    <AddShoppingCartIcon />
+                                </IconButton>
+                        </ListItem>
+                        <Divider variant='inset' component='li' />
+                    </React.Fragment>
+                ))}
+            </List> */}
+            {productList.map((product) => (
+
+                <Card sx={{ 
+                    display: 'flex', 
+                    maxWidth: 450, 
+                    mb: 2, 
+                    boxShadow: 3, 
+                    cursor: 'pointer' }} key={product.id}>
+                    <CardMedia
+                        component="img"
+                        height="200"
+                        image={product.image}
+                        alt={product.title}
+                        sx={{ width: 400, height: 277, objectFit: 'cover' }}
+                    />
+                    <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+                        <CardContent sx={{ flex: '1 0 auto' }}>
+                            <Typography variant="h6">{product.title}</Typography>
+                            <Typography variant="subtitle1" color="text.secondary" sx={{textAlign: 'right'}}>
+                                ${product.price}
+                            </Typography>
+                                <Box sx={{ display: 'flex', alignItems: 'flex-start', pl: 1, pb: 1 }}>
+                                    <ErrorBoundary>
+                                        <RateProducts
+                                            rateValue={ 5}
+                                        />
+                                    </ErrorBoundary>
+                                </Box>
+                            <Typography variant="body2" sx={{ mt: 1 }}>
+                                {product.description}
+                            </Typography>
+                            <Box pt={5} textAlign="center" pb={-1}>
+                                <Button variant="contained" onClick={handleClickOpen}>
+                                    Ver Detalles
+                                </Button>
+                            </Box>
+                        </CardContent>
+                    </Box>
+                </Card>
+            ))};
+            </Box>
+        </Card>
     )
 }

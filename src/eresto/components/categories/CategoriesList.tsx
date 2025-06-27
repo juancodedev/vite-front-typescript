@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
-import RateProducts from '../RateProducts';
-import ErrorBoundary from '../ErrorBoundary';
+
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const categories = [
@@ -70,7 +69,11 @@ export const CategoriesList = (props: CategoriesListProps) => {
                 {categories.map((category: Category) => (
                     <Card
                         key={category.id} 
-                        sx={{ display: 'flex', mb: 2, boxShadow: 3, cursor: 'pointer' }}
+                        sx={{ 
+                            display: 'flex', 
+                            mb: 2,
+                            boxShadow: 3,
+                            cursor: 'pointer' }}
                         onClick={() => {
                             goToCategory(category);
                         }}
@@ -83,7 +86,7 @@ export const CategoriesList = (props: CategoriesListProps) => {
                         />
                         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                             <CardContent sx={{ flex: '1 0 auto' }}>
-                                <Typography component="div" variant="h5">
+                                <Typography component="div" variant="h6">
                                     {category.name}
                                 </Typography>
                                 <Typography
@@ -94,13 +97,7 @@ export const CategoriesList = (props: CategoriesListProps) => {
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac ante massa. Suspendisse ultricies...
                                 </Typography>
                             </CardContent>
-                            <Box sx={{ display: 'flex', alignItems: 'flex-start', pl: 1, pb: 1 }}>
-                                <ErrorBoundary>
-                                    <RateProducts
-                                        rateValue={ 5}
-                                    />
-                                </ErrorBoundary>
-                            </Box>
+
                         </Box>
                     </Card>
                 ))}
