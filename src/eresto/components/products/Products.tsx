@@ -1,21 +1,27 @@
-import { ListItemAvatar, List, Card, CardMedia, CardContent, Box, Button, Grid } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import Avatar from '@mui/material/Avatar';
-import ListItemText from '@mui/material/ListItemText';
+import { Card, CardMedia, CardContent, Box, Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import React from 'react'
+import { useState } from 'react'
 import RateProducts from '../RateProducts';
 import ErrorBoundary from '../ErrorBoundary';
 import { useParams, Link } from 'react-router-dom';
+import { ProductDetailModal } from './ProductDetailModal';
 
 const productList = [
     {
         "id": 4,
         "title": "Magnum Almendras",
         "image": "https://picsum.photos/200/300?random=1",
+        "ingredients": [
+            "Hongos portobello frescos",
+            "Ricotta italiana",
+            "Espinacas baby",
+            "Tomates cherry",
+            "Queso parmesano",
+            "Hierbas aromáticas",
+            "Aceite de oliva extra virgen",
+            "Ajo fresco",
+            "Pimienta negra",
+        ],
         "price": "2.50",
         "active": true,
         "description": "Helado premium cubierto con una capa crujiente de chocolate y almendras.",
@@ -30,6 +36,17 @@ const productList = [
         "id": 5,
         "title": "Chocapic Helado",
         "image": "https://picsum.photos/200/300?random=2",
+        "ingredients": [
+            "Hongos portobello frescos",
+            "Ricotta italiana",
+            "Espinacas baby",
+            "Tomates cherry",
+            "Queso parmesano",
+            "Hierbas aromáticas",
+            "Aceite de oliva extra virgen",
+            "Ajo fresco",
+            "Pimienta negra",
+        ],
         "price": "1.90",
         "active": true,
         "description": "Helado con sabor a chocolate y cereal Chocapic, ideal para los más pequeños.",
@@ -48,6 +65,17 @@ const productList = [
         "active": true,
         "description": "Delicioso helado con sabor a plátano, fresa y chocolate en un solo bocado.",
         "category": 1,
+        "ingredients": [
+            "Hongos portobello frescos",
+            "Ricotta italiana",
+            "Espinacas baby",
+            "Tomates cherry",
+            "Queso parmesano",
+            "Hierbas aromáticas",
+            "Aceite de oliva extra virgen",
+            "Ajo fresco",
+            "Pimienta negra",
+        ],
         "category_data": {
             "id": 1,
             "title": "Helados",
@@ -59,6 +87,17 @@ const productList = [
         "title": "Cornetto Clásico",
         "image": "https://picsum.photos/200/300?random=4",
         "price": "2.00",
+        "ingredients": [
+            "Hongos portobello frescos",
+            "Ricotta italiana",
+            "Espinacas baby",
+            "Tomates cherry",
+            "Queso parmesano",
+            "Hierbas aromáticas",
+            "Aceite de oliva extra virgen",
+            "Ajo fresco",
+            "Pimienta negra",
+        ],
         "active": true,
         "description": "Cono de barquillo relleno de helado de vainilla y cubierto con chocolate y trozos de maní.",
         "category": 1,
@@ -72,6 +111,17 @@ const productList = [
         "id": 8,
         "title": "Mini Bombón",
         "image": "https://picsum.photos/200/300?random=5",
+        "ingredients": [
+            "Hongos portobello frescos",
+            "Ricotta italiana",
+            "Espinacas baby",
+            "Tomates cherry",
+            "Queso parmesano",
+            "Hierbas aromáticas",
+            "Aceite de oliva extra virgen",
+            "Ajo fresco",
+            "Pimienta negra",
+        ],
         "price": "1.00",
         "active": true,
         "description": "Pequeño helado de vainilla cubierto de chocolate, ideal para un antojo rápido.",
@@ -86,6 +136,17 @@ const productList = [
         "id": 9,
         "title": "Mini Bombón",
         "image": "https://picsum.photos/200/300?random=6",
+        "ingredients": [
+            "Hongos portobello frescos",
+            "Ricotta italiana",
+            "Espinacas baby",
+            "Tomates cherry",
+            "Queso parmesano",
+            "Hierbas aromáticas",
+            "Aceite de oliva extra virgen",
+            "Ajo fresco",
+            "Pimienta negra",
+        ],
         "price": "1.00",
         "active": true,
         "description": "Pequeño helado de vainilla cubierto de chocolate, ideal para un antojo rápido.",
@@ -100,6 +161,17 @@ const productList = [
         "id": 10,
         "title": "Mini Bombón",
         "image": "https://picsum.photos/200/300?random=7",
+        "ingredients": [
+            "Hongos portobello frescos",
+            "Ricotta italiana",
+            "Espinacas baby",
+            "Tomates cherry",
+            "Queso parmesano",
+            "Hierbas aromáticas",
+            "Aceite de oliva extra virgen",
+            "Ajo fresco",
+            "Pimienta negra",
+        ],
         "price": "1.00",
         "active": true,
         "description": "Pequeño helado de vainilla cubierto de chocolate, ideal para un antojo rápido.",
@@ -114,6 +186,17 @@ const productList = [
         "id": 11,
         "title": "Mini Bombón",
         "image": "https://picsum.photos/200/300?random=8",
+        "ingredients": [
+            "Hongos portobello frescos",
+            "Ricotta italiana",
+            "Espinacas baby",
+            "Tomates cherry",
+            "Queso parmesano",
+            "Hierbas aromáticas",
+            "Aceite de oliva extra virgen",
+            "Ajo fresco",
+            "Pimienta negra",
+        ],
         "price": "1.00",
         "active": true,
         "description": "Pequeño helado de vainilla cubierto de chocolate, ideal para un antojo rápido.",
@@ -129,10 +212,33 @@ const productList = [
 
 export default function TableProducts() {
     const { id, idCategory } = useParams<{ id: string; idCategory: string }>();
-    const handleClickOpen = () => {
+    const [open, setOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<{
+        id: number;
+        title: string;
+        image: string;
+        ingredients?: string[];
+        price: string;
+        active: boolean;
+        description: string;
+        category: number;
+        category_data: {
+            id: number;
+            title: string;
+            image: string;
+        };
+    } | null>(null);
+    
+    const handleClickOpen = (product: { id: number; title: string; image: string; ingredients?: string[]; price: string; active: boolean; description: string; category: number; category_data: { id: number; title: string; image: string } }) => {
+        setSelectedProduct(product);
         setOpen(true);
-        setQuantity(1); // reiniciar cantidad cada vez que se abre
     };
+
+    const handleClose = () =>{
+        setOpen(false);
+        setSelectedProduct(null);
+    }
+
     return (
         <Card sx={{display: 'flex'}}>
             <Box sx={{display: 'flex', flexDirection: 'column'}}>
@@ -200,7 +306,7 @@ export default function TableProducts() {
                                 {product.description}
                             </Typography>
                             <Box pt={5} textAlign="center" pb={-1}>
-                                <Button variant="contained" onClick={handleClickOpen}>
+                                <Button variant="contained" onClick={() => handleClickOpen(product)}>
                                     Ver Detalles
                                 </Button>
                             </Box>
@@ -208,6 +314,18 @@ export default function TableProducts() {
                     </Box>
                 </Card>
             ))};
+            <ProductDetailModal 
+            open={open}
+            onClose={handleClose}
+            product={selectedProduct ? {
+                id: selectedProduct.id.toString(),
+                name: selectedProduct.title,
+                image: selectedProduct.image,
+                ingredients: selectedProduct.ingredients || [],
+                price: parseFloat(selectedProduct.price),
+                calories: 0 // Add a default value or calculate if available
+            } : null}
+                />
             </Box>
         </Card>
     )
