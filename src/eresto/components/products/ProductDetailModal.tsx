@@ -1,12 +1,15 @@
 import { Box, Button, Chip, Dialog, DialogContent, DialogTitle, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material'
 import { Close as CloseIcon, ShoppingCart as ShoppingCartIcon } from "@mui/icons-material"
-import React from 'react'
+import React, { useState } from 'react'
+import { addProductCart } from '@/eresto/actions/cart'
+import AddToCartSnackbar from '../SnackBar'
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 interface ProductModalProps {
     open: boolean
     onClose: () => void
     product: {
-        id: string
+        id: number
         name: string
         image: string
         ingredients: Array<string>
@@ -16,18 +19,34 @@ interface ProductModalProps {
 }
 
 export const ProductDetailModal: React.FC<ProductModalProps> = ({ open, onClose, product }) => {
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [productName, setProductName] = useState('');
+
     const handleAddToCart = () => {
         if (product) {
-            console.log('Adding to cart:', product.name);
+            addProductCart(product.id);
+            setProductName(product.name); // Guardamos el nombre
+            setSnackbarOpen(true); // Mostramos Snackbar
+            // setTimeout(() => {
+            //     onClose();
+            // }, 500);
         }
-        onClose();
     };
+
+    const handleSnackbarClose = (
+        event: React.SyntheticEvent | Event,
+        reason?: string
+    ) =>{
+        if (reason === 'clickaway') return;
+        setSnackbarOpen(false);
+    }
 
     if (!product) {
         return null;
     }
 
     return (
+        <>
         <Dialog
             open={open}
             onClose={onClose}
@@ -147,7 +166,7 @@ export const ProductDetailModal: React.FC<ProductModalProps> = ({ open, onClose,
                     {/* Botón agregar */}
                     <Button
                         variant="contained"
-                        startIcon={<ShoppingCartIcon />}
+                        startIcon={<AddShoppingCartIcon />}
                         onClick={handleAddToCart}
                         sx={{
                             backgroundColor: "success.main",
@@ -162,9 +181,14 @@ export const ProductDetailModal: React.FC<ProductModalProps> = ({ open, onClose,
                     </Button>
                 </Box>
             </DialogContent>
-
-
         </Dialog >
+        <AddToCartSnackbar
+            open={snackbarOpen}
+            onClose={handleSnackbarClose}
+            productName={productName}
+        />
+        </>
+
     )
 }
 

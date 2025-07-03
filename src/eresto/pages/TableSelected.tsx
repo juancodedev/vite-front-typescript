@@ -5,13 +5,14 @@ import { useParams } from "react-router-dom";
 
 // Adjust the path as needed
 
+
 const TableSelected = () => {
-  const { id } = useParams<{ id: string }>();
+  const { tableNumber } = useParams<{ tableNumber: string }>();
 
   return (
     <OrderProvider>
       <TableOrdersClients params={{
-        id: id
+        tableNumber: tableNumber
       }} />
     </OrderProvider>
   )

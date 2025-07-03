@@ -105,8 +105,3 @@ export const CategoriesList = (props: CategoriesListProps) => {
         </Card>
     )
 }
-
-function useParams<T>(): { id: any; } {
-    throw new Error('Function not implemented.');
-}
-

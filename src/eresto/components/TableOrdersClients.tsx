@@ -1,15 +1,19 @@
 import React from 'react'
-
-import { useParams } from "react-router-dom";
 import {CategoriesList} from './categories/CategoriesList';
 
+interface TableOrdersClientsProps {
+  params: {
+    tableNumber: string | undefined;
+  };
+}
 
-const TableOrdersClients = () => {
-  const { id } = useParams<{ id: string }>();
+const TableOrdersClients: React.FC<TableOrdersClientsProps> = ({ params }) => {
+const tableNumber = params.tableNumber;
+
   
   return (
     <CategoriesList
-      tableId = { id ? parseInt(id, 10) : undefined } />
+      tableId = { tableNumber ? parseInt(tableNumber, 10) : undefined } />
   )
 }
 

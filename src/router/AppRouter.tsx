@@ -14,6 +14,7 @@ import Products from "../eresto/pages/admin/Products";
 import Login from "../eresto/pages/Login";
 import TableSelected from "../eresto/pages/TableSelected";
 import TableProducts from "../eresto/components/products/Products";
+import { ClientLayout } from "@/eresto/layouts/ClientLayout/ClientLayout";
 
 export const AppRouter = () => {
     return (
@@ -22,8 +23,8 @@ export const AppRouter = () => {
             <Route path="/home" element={<Home onSelect={function (): void {
                 throw new Error("Function not implemented.");
             } }/>} />
-            <Route path="/home/table/:id" element={<TableSelected />} />
-            <Route path="/home/table/:id/:idCategory" element={<TableProducts />} />
+            <Route path="/home/table/:tableNumber" element={<ClientLayout><TableSelected /></ClientLayout>} />
+            <Route path="/home/table/:tableNumber/:idCategory" element={<ClientLayout><TableProducts /></ClientLayout>} />
             
             {/* Admin routes */}
             <Route path="/admin" element={<Admin/>}>
